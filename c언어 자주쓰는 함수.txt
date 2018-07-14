@@ -1,0 +1,91 @@
+*C언어 요약*
+----함수 및 라이브러리-----
+#include <stdlib>
+-rand() : 0~32767 사이의 난수 생성
+-time() : 1970년 1월 1일로부터 현재까지 경과된 시간을 초단위로 보여줌
+-srand((unsigned) time(NULL) ); ->현재 시간을 기준으로 난수 생성
+-system("명령어") -> "명령어" 를 cmd에서 실행
+#include <math.h>
+
+abs(int x) : 정수 절대값
+fabs(double x) : 실수 절대값
+pow(double x, double y) : x의 y제곱
+sqrt(double x) : 제곱근
+deil(double x) : x보다 작지 않은 가장 작은 정수
+
+#inlcude <stdio.h> //표준 입출력
+int getchar(void) : 문자 하나를 입력받아 리턴함
+void putchar(int c) : c에 저장된 문자를 출력
+int getch(void) : 하나의 문자를 읽어서 리턴. 버퍼를 사용하지 않음.
+void putch(int c) : 변수 c에 저장된 문자를 출력(버퍼x)
+char *gets(char *buffer) : 한 줄의 문자열을 읽어서 배열 s[]에 저장. 마지막에 \0 포함. -> char 형만 받음
+int puts(const char*s) : 배열 s[]에 저장되어 있는 한 줄의 문자열을 출력
+
+#include<conio.h>
+_getch() : 문자를 하나 입력받으며, 버퍼를 사용하지 않고, 엔터 필요x,에코x
+_putch() : 입력받은 문자를 출력하며, 에코x
+_getche() : 문자를 하나 입력받으며, 에코있음.
+
+#include <ctype.h> //문자 처리
+isalpha(c) : c가 영문자인가?
+isupper(c) : c가 대문자인가?
+islower(c) : c가 소문자인가?
+isdigit(c) : c가 숫자인가?
+isalnum(c) : c가 영문자이거나 숫자인가?
+isxdigit(c) : c가 16진수인가?
+isspace(c) : c가 공백인가?(' ', '\n', '\t', '\v', '\r')
+ispunct(c) : c가 구두점인가?
+isprint(c) : c가 출력 가능한 문자인가?
+iscntrl(c) : c가 제어문자인가?
+isascii(c) : c가 아스키코드인가?
+toupper(c) : c를 대문자로 바꾼다
+tolower(c) : c를 소문자로 바꾼다
+toascii(c) : c를 아스키코드로 바꾼다.
+
+#include <string.h> //문자열 처리
+strlen(s) : 문자열 s의 길이
+strcpy(s1, s2) : s2를 s1에 복사
+strcat(s1, s2) : s1+s2. s1뒤에 s2를 붙임
+strcmp(s1, s2) : s1과 s2가 같은지 비교
+strncpy(s1, s2, n) : s2의 앞에서 n개의 문자를 s1에 복사
+strncat(s1, s2, n) : s1의 끝에 s2의 앞에서 n개의 문자를 붙임, 단어를 예로 들면 사전상 s1이 앞이면 참, 둘이 같으면 0, 사전상 s1이 뒤면 거짓 리턴.
+strncmp(s1,s2,n) : 앞에서 n개의 문자까지 s1과 s2를 비교
+strchr(s, c) : 문자열 s안에서 변수c에 저장된 문자를 찾는다.
+strstr(s1, s2) : 문자열 s1안에서 문자열 s2를 찾는다.
+char *strtok(s, delimit); : 문자열 s를 delimit를 이용하여 토큰으로 분리한다.
+   -strtok
+설명
+strtok() 함수는 0개 이상의 토큰 시리즈로 string1을 읽고 string1에서 토큰 분리문자 역할을 하는 문자 세트로 string2를 읽습니다.
+string1의 토큰은 string2에서 하나 이상의 분리문자로 분리할 수 있습니다. string1의 토큰은 strtok() 함수에 대한 일련의 호출로 찾을 수 있습니다.
+지정된 string1에 대한 strtok() 함수의 첫 번째 호출에서 strtok() 함수는 선행 분리문자를 건너뛰고 string1에서 첫 번째 토큰을 검색합니다.
+첫 번째 토큰에 대한 포인터가 리턴됩니다.
+NULL string1 인수로 strtok() 함수가 호출된 경우 마지막 널이 아닌 string1 매개변수의 저장된 사본에서 다음 토큰을 읽습니다.
+각 분리문자는 널 문자로 대체됩니다. 분리문자 세트는 호출마다 달라질 수 있으므로 string2는 임의의 값을 사용할 수 있습니다.
+string1의 초기값은 strtok() 함수에 대한 호출 이후에 보존되지 않습니다.
+strtok() 함수는 버퍼로 데이터를 기록합니다.
+버퍼가 strtok() 함수로 손상되므로 토큰화할 스트링을 포함하는 중요하지 않은 버퍼로 함수를 전달해야 합니다.
+
+sprintf(s,"%d",i) : 변수i에 저장된 값을 문자열의 형식으로 배열s에 저장한다.
+sscanf(s1,"%d",&value) : s1에 저장된 문자를 %d 형식으로(정수값으로)읽어서 value에 저장한다.
+atoi(const char*str) : str을 int형으로 변환
+atof(const char*str) : str을 double형으로 변환
+-가변 매개 변수
+#include <stdarg.h>
+int sum (int a, int b, ...)
+{
+va_list argptr;
+va_start(argptr, num); //num = 매개변수 개수
+~~~
+}
+
+매개변수의 개수가 상황에 따라 변할 수 있도록 하려면 ...을 이용한다.
+
+----지역,전역-----
+-일반 변수나 함수는 선언시에 메모리에 공간이 할당되었다가 종료될 때 반환된다.
+static으로 선언하면 변수나 함수 사용이 종료된 후에도 그 값이 유지된다.
+
+-여러개의 소스파일을 연결할 때, 한 소스파일에서 int a 를 선언하고 다른 파일에서
+extern int a 를 통해 linkage를 형성하여 불러올 수 있다. 자바에서 package 연결하는 개념.
+이는 함수와 변수 모두 가능하다.
+단, static으로 선언된 변수나 함수는 해당 소스파일 내에서만 사용 가능하므로 extern이 불가능하다.
+
